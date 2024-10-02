@@ -1,1 +1,2 @@
-# actions-1
+# Exploring Actions
+This Repo is for learning Github actions
