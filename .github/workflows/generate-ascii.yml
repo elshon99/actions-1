@@ -1,23 +1,23 @@
 name: Genrate ASCII Artwork
 
 on:
-    push
+  push
 
 jobs:
-    ascii_job:
-        runs-on: ubuntu-latest
-        steps:
-        - name:
-          run: sudo apt-get install cowsay -y
+  ascii_job:
+    runs-on: ubuntu-latest
+    steps:
+    - name:
+      run: sudo apt-get install cowsay -y
 
-        - name: Execute Cowsay CMD
-          run: cowsay -f dragon "Run for cover, I am a Dragon....RAWR" >> dragon.txt
+    - name: Execute Cowsay CMD
+      run: cowsay -f dragon "Run for cover, I am a Dragon....RAWR" >> dragon.txt
 
-        - name: Test File Exists
-          run: grep -i "dragon" dragon.txt
+    - name: Test File Exists
+      run: grep -i "dragon" dragon.txt
 
-        - name: Read File
-          run: cat dragon.txt
+    - name: Read File
+      run: cat dragon.txt
 
-        - name: list Repo Files
-          run: ls -ltra
+    - name: list Repo Files
+      run: ls -ltra
