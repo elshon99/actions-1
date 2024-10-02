@@ -23,9 +23,6 @@ jobs:
         needs: build_job_1
         runs-on: ubuntu-latest
         steps:
-        - name: Sleep for 10 seconds
-          run: sleep 10
-
         - name: Download Dragon ASCII
           uses: actions/download-artifact@v4
           with:
@@ -35,7 +32,7 @@ jobs:
           run: ls -R
 
         - name: Test the file exists
-          run: grep -l "dragon" dragon.txt
+          run: grep -i "dragon" dragon.txt
 
     deploy_job_3:
         needs: test_job_2
