@@ -1,24 +1,31 @@
 name: Matrix Configuration
 
 on:
-    push:
-    workflow_dispatch: 
+    push: # Trigger on push to the repo
+    workflow_dispatch: #Implement button to trigger workflow on github or via CLI and API
 
 jobs:
-    deploy-on-ubuntu:
-        runs-on: ubuntu-latest
+    deploy:
+        strategy:
+            # Matrices allow for multiple to be passed through runners (VMs)
+            matrix:
+                os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+                images: [hello-world, alpine]
+        runs-on: ${{ matrix.os }}
         steps:
         - name: Echo Docker Details
           run: docker info
 
-        - name: Run Images
-          run: docker run hello-world
+        - name: Run Image on ${{ matrix.os }}
+          run: docker run ${{ matrix.images}}
 
-    deploy-on-windows:
-        runs-on: windows-latest
-        steps:
-        - name: Echo Docker Details
-          run: docker info
-
-        - name: Run Images
-          run: docker run hello-world
+# Matrix strategies would only require one job in this case Leaving here for reference
+    #deploy-on-windows:
+    #    runs-on: windows-latest
+    #    steps:
+    #    - name: Echo Docker Details
+    #      run: docker info
+#
+    #    - name: Run Images
+    #      run: docker run hello-world
+#
